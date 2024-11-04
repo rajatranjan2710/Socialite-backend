@@ -22,7 +22,7 @@ const __dirname = dirname(__filename);
 // Middleware setup
 expressApp.use(
   cors({
-    origin: "https://socialz-frontend.vercel.app/",
+    origin: "https://socialz-frontend.vercel.app",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
