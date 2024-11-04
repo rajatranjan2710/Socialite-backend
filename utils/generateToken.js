@@ -7,7 +7,7 @@ export const generateToken = (id, res) => {
     });
     res.cookie("socialite", token, {
       httpOnly: true,
-      sameSite: "strict",
+      sameSite: "None",
       secure: true,
       maxAge: 1000 * 60 * 60 * 24 * 2,
     });
