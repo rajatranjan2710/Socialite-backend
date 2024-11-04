@@ -25,15 +25,32 @@ export const getReciverSocket = (receiverId) => {
 
 io.on("connection", (socket) => {
   console.log("a user connected", socket.id);
+  
   const userId = socket.handshake.query.userId;
-  userSocketMAP[userId] = socket.id;
-  console.log("userSocketMAP", userSocketMAP);
+  if (userId) {
+    userSocketMAP[userId] = socket.id; // Update existing mapping
+    console.log("userSocketMAP", userSocketMAP);
+    
+    socket.emit("welcome", { message: "Welcome to the chat!" });
+  } else {
+    console.error("No userId provided during socket connection.");
+  }
 
-  //on message
+  socket.on("error", (error) => {
+    console.error("Socket error:", error);
+  });
 
   socket.on("disconnect", () => {
     console.log("user disconnected");
+
+    for (const userId in userSocketMAP) {
+      if (userSocketMAP[userId] === socket.id) {
+        delete userSocketMAP[userId];
+        break;
+      }
+    }
   });
 });
+
 
 export { io, server, expressApp };
