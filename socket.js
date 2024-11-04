@@ -15,6 +15,15 @@ const io = new Server(server, {
 });
 configDotenv();
 
+// Middleware setup
+expressApp.use(
+  cors({
+    origin: "https://socialz-frontend.vercel.app",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
+
 const userSocketMAP = {};
 
 export const getReciverSocket = (receiverId) => {
