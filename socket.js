@@ -8,7 +8,7 @@ const expressApp = express();
 const server = http.createServer(expressApp);
 const io = new Server(server, {
   cors: {
-    origin: "https://socialite-be79.onrender.com",
+    origin: "https://socialz-frontend.vercel.app/",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   },
